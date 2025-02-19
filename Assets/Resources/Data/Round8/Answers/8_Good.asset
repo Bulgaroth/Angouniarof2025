@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04488d80003afe14ea07d22b8dadcba4, type: 3}
+  m_Name: 8_Good
+  m_EditorClassIdentifier: 
+  text:
+    textFR: "Tu sais, je pense que t\u2019es vraiment un mec sympa. Tra\xEEnons ensemble
+      au lieu de tuer tout le monde."
+    textEN: You know, I think you are a cool dude. Let's just hang out together instead
+      of killing everyone.
+  devilReactionText:
+    textFR: "Ce n\u2019est pas mon truc, mais honn\xEAtement, je veux tenter quelque
+      chose de nouveau. Allons boire un verre."
+    textEN: It's usually not my vibe, but honestly. I am eager to try something new.
+      Let's grab a drink.
+  nextDialogue: {fileID: 0}
+  devilStateModifier: 1

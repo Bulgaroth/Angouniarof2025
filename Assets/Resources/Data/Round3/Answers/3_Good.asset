@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04488d80003afe14ea07d22b8dadcba4, type: 3}
+  m_Name: 3_Good
+  m_EditorClassIdentifier: 
+  text:
+    textFR: "Et comment suis-je cens\xE9 te divertir si tu fais tout p\xE9ter ?"
+    textEN: And how I'm supposed to entertain you if you blow up everything ?
+  devilReactionText:
+    textFR: "Tu peux t\u2019entra\xEEner en Enfer. C\u2019est plus chaleureux."
+    textEN: You might practise in Hell. It's a lot warmer.
+  nextDialogue: {fileID: 11400000, guid: 8219ec22edbf6f346b92b932e4b58927, type: 2}
+  devilStateModifier: 1

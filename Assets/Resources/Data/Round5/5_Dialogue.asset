@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 630b8de87dd66d04a8b32df4d327695f, type: 3}
+  m_Name: 5_Dialogue
+  m_EditorClassIdentifier: 
+  text:
+    textFR: "Je me demande\u2026 une petite apocalypse ardente classique ou quelque
+      chose de nouveau\u2026 ?\n"
+    textEN: "I wonder\u2026 classic fiery apocalypse or something new... ?"
+  answers:
+  - {fileID: 11400000, guid: 817f4a1915254bc41bb88ead849afe6d, type: 2}
+  - {fileID: 11400000, guid: 3449efda8846e5b429c48d9aca2cbb7d, type: 2}
+  - {fileID: 11400000, guid: dbc00508f7006d94ca09f1155a43faa3, type: 2}

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 630b8de87dd66d04a8b32df4d327695f, type: 3}
+  m_Name: StartDialogue
+  m_EditorClassIdentifier: 
+  text:
+    textFR: "Alors tu est le prochain humain qui tente de me divertir, hein ? Est-ce
+      que tu te rends compte qu\u2019il n\u2019y a rien \xE0 faire en Enfer ces jours-ci
+      ?"
+    textEN: So you are the next human trying to  enterain me, huh ? Do you know how
+      little there is to do in Hell these days ?
+  answers:
+  - {fileID: 11400000, guid: e6c6a87b4ffa65e4eb3fa5e937220211, type: 2}
+  - {fileID: 11400000, guid: 855fd0da2b88c16438b51b934a276498, type: 2}
+  - {fileID: 11400000, guid: b9ace010f862c3e4bb6e8422d833e97c, type: 2}

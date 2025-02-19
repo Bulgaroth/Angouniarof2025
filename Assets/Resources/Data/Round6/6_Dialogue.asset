@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 630b8de87dd66d04a8b32df4d327695f, type: 3}
+  m_Name: 6_Dialogue
+  m_EditorClassIdentifier: 
+  text:
+    textFR: "Est-ce qu'une anecdote \xE0 propos de mes cornes t\u2019int\xE9resse
+      ?"
+    textEN: Does a story about my horns interest you ?
+  answers:
+  - {fileID: 11400000, guid: 64ca12cd6a6eb074c8ffd7b7f1dfe961, type: 2}
+  - {fileID: 11400000, guid: 37d00c769caf03e468b1f2830e2d1a07, type: 2}
+  - {fileID: 11400000, guid: 32be60900fd63384bb0c2c45dfdbcf19, type: 2}

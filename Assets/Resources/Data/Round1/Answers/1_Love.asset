@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04488d80003afe14ea07d22b8dadcba4, type: 3}
+  m_Name: 1_Love
+  m_EditorClassIdentifier: 
+  text:
+    textFR: "Un beau diable comme toi a s\xFBrement des tas de choses \xE0 faire
+      ?"
+    textEN: Surely a handsome Devil like you has a ton of things to do ?
+  devilReactionText:
+    textFR: "Vil flatteur ! Mais c'est bien le probl\xE8me, j'ai tout fais."
+    textEN: You vile flatterer ! But that's the problem, I've done everything.
+  nextDialogue: {fileID: 11400000, guid: 4fc27f8345e8e5e419dc1309f36edb0b, type: 2}
+  devilStateModifier: 10

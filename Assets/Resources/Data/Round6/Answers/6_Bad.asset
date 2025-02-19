@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04488d80003afe14ea07d22b8dadcba4, type: 3}
+  m_Name: 6_Bad
+  m_EditorClassIdentifier: 
+  text:
+    textFR: "T\u2019es s\xE9rieux ?! On peut parler d\u2019autre chose de plus \xAB
+      int\xE9ressant \xBB ?"
+    textEN: "Seriously ?! Can we talk about something more \u2018interesting\u2019
+      ?"
+  devilReactionText:
+    textFR: "On peut parler de leur capacit\xE9 \xE0 \xE9ventrer les gens."
+    textEN: We could talk about how effective they are to gore people.
+  nextDialogue: {fileID: 11400000, guid: 16215397c4e520e409ef9e9ccd5f8372, type: 2}
+  devilStateModifier: -1

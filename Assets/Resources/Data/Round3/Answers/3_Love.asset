@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04488d80003afe14ea07d22b8dadcba4, type: 3}
+  m_Name: 3_Love
+  m_EditorClassIdentifier: 
+  text:
+    textFR: "Allons allons, un beau gar\xE7on comme toi ne devrait pas \xEAtre si
+      m\xE9chant."
+    textEN: Now now, a pretty boy like you shouldn't be so mean.
+  devilReactionText:
+    textFR: "Mais \xEAtre m\xE9chant me rends si \xE9l\xE9gant."
+    textEN: But mean makes me so dashing.
+  nextDialogue: {fileID: 11400000, guid: 8219ec22edbf6f346b92b932e4b58927, type: 2}
+  devilStateModifier: 10

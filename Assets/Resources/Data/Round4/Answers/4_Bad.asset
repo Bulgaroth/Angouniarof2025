@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04488d80003afe14ea07d22b8dadcba4, type: 3}
+  m_Name: 4_Bad
+  m_EditorClassIdentifier: 
+  text:
+    textFR: "Ils sont au moins plus int\xE9ressants que toi."
+    textEN: At least they are more interesting than you.
+  devilReactionText:
+    textFR: "BIIIP ! Mauvaise r\xE9ponse. T'es \xE0 deux doigts de cramer."
+    textEN: 'BEEEP Wrong answer. You''re one snap away from burning. '
+  nextDialogue: {fileID: 11400000, guid: 0b944105aba9bc341a61b260ff45cc51, type: 2}
+  devilStateModifier: -1

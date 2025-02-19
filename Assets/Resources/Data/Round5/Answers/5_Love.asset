@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04488d80003afe14ea07d22b8dadcba4, type: 3}
+  m_Name: 5_Love
+  m_EditorClassIdentifier: 
+  text:
+    textFR: "Je suis ce nouveau truc dont t\u2019as d\xE9sesp\xE9r\xE9ment besoin."
+    textEN: I'm all the something new you desperatly need.
+  devilReactionText:
+    textFR: "Pr\xE9tentieux, \xE9go\xEFste, arrogant\u2026 C'est \xE7a que j'aime
+      !"
+    textEN: "Pretentious, egotistical, arrogant\u2026 I like you !"
+  nextDialogue: {fileID: 11400000, guid: 99bf72e3bc03bec47a35359ec3709af6, type: 2}
+  devilStateModifier: 10

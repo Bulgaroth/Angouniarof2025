@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04488d80003afe14ea07d22b8dadcba4, type: 3}
+  m_Name: 2_Bad
+  m_EditorClassIdentifier: 
+  text:
+    textFR: Tu me prends pour qui ? Ton clown?
+    textEN: Who do you think I am? Your clown?
+  devilReactionText:
+    textFR: "Un clown ? Peut-\xEAtre. Mais un pi\xE8tre humain, d\xE9finitivement."
+    textEN: A clown? Maybe. But definitely a puny human.
+  nextDialogue: {fileID: 11400000, guid: 6410c9b6babdd6245876aafaca2ad4f7, type: 2}
+  devilStateModifier: -1

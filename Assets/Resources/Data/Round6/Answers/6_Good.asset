@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04488d80003afe14ea07d22b8dadcba4, type: 3}
+  m_Name: 6_Good
+  m_EditorClassIdentifier: 
+  text:
+    textFR: Pourquoi pas ?
+    textEN: Why not ?
+  devilReactionText:
+    textFR: "Elles m\u2019ont servi \xE0 me d\xE9fendre contre un tas de d\xE9mons
+      de pacotille."
+    textEN: I've used them to defend myself against a bunch of rubbish demons.
+  nextDialogue: {fileID: 11400000, guid: 16215397c4e520e409ef9e9ccd5f8372, type: 2}
+  devilStateModifier: 1

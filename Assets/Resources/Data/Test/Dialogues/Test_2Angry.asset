@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 630b8de87dd66d04a8b32df4d327695f, type: 3}
+  m_Name: Test_2Angry
+  m_EditorClassIdentifier: 
+  text:
+    textFR: "C'est le 2nd dialogue un peu v\xE9n\xE8r, avec un exemple de changement
+      de <color=\"red\">couleur</color>."
+    textEN: This is the 2nd dialogue a bit angry, with an example of <color="red">color</color>
+      change.
+  answers:
+  - {fileID: 11400000, guid: b15f038fe33bdef4ead2eff75bedd7e8, type: 2}
+  - {fileID: 11400000, guid: 90428cf031f79e744839816797f7642f, type: 2}
+  - {fileID: 11400000, guid: 3a24f01c727a36540a13c3d881d649e9, type: 2}
