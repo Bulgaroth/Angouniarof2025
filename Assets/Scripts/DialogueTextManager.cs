@@ -35,6 +35,7 @@ public class DialogueTextManager : MonoBehaviour
 		{
 			if (newCharTimer <= 0)
 			{
+				UpdateText();
 				newCharTimer = 1;
 			}
 			else newCharTimer -= Time.deltaTime * talkingSpeed;

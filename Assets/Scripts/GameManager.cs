@@ -20,21 +20,25 @@ public class GameManager : MonoBehaviour
 	#region Références d'assets
 
 	[Header("Assets")]
-	[SerializeField, SerializedDictionary("Devil states", "Sprites")]
+	[SerializeField, SerializedDictionary("Devil states", "Devil sprites")]
 	private SerializedDictionary<DevilState, Sprite> devilSprites;
+	[SerializeField, SerializedDictionary("Devil states", "Backgrounds")]
+	private SerializedDictionary<DevilState, Sprite> backgroundSprites;
 	[SerializeField] private AnswerUI[] answerUIs;
 	#endregion
 
 	[Header("References")]
 	[SerializeField] private EndScreenManager endScreenManager;
 	[SerializeField] private DialogueTextManager dialogueTextManager;
+	[SerializeField] private Image backgroundImg;
 	[SerializeField] private Image devilImg;
+	[SerializeField] private DialogueData startingDialogue;
 	#endregion
 
 	private DevilState devilState;
 	private int nbRounds;
 
-	[SerializeField] private DialogueData currentDialogue;
+	private DialogueData currentDialogue;
 	private AnswerData currentAnswer;
 
 	private bool devilReacted = true;
@@ -45,7 +49,7 @@ public class GameManager : MonoBehaviour
 	private void Awake()
 	{
 		instance = this;
-		NextDialogue(true);
+		Restart();
 	}
 
 	public void AnswerSelected(int answerIndex)
@@ -85,6 +89,31 @@ public class GameManager : MonoBehaviour
 		else ShowAnswers();
 	}
 
+	public void Restart()
+	{
+		end = false;
+		endScreenManager.gameObject.SetActive(false);
+
+		devilState = DevilState.Neutral;
+		//devilImg.sprite = devilSprites[devilState];
+		devilImg.color = devilState switch
+		{
+			DevilState.Interested => new Color(0.8f, 0.6f, 0.9f),
+			DevilState.InLove => new Color(1, 0, 0.8f),
+			DevilState.Happy => new Color(0.6f, 1, 0.6f),
+			DevilState.Friendly => Color.green,
+			DevilState.Angry => new Color(1, 0.6f, 0.6f),
+			DevilState.Furious => Color.red,
+			_ => Color.white
+
+		};
+
+		backgroundImg.sprite = backgroundSprites[devilState];
+
+		currentDialogue = startingDialogue;
+		NextDialogue(true);
+	}
+
 	private void NextDialogue(bool first = false)
 	{
 		if (!first) currentDialogue = currentAnswer.nextDialogue;
@@ -101,7 +130,7 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	public void UpdateDevilState(int modifier)
+	private void UpdateDevilState(int modifier)
 	{
 		int currentStateIndex = (int)devilState;
 		int nextStateIndex = currentStateIndex + modifier;
@@ -131,13 +160,12 @@ public class GameManager : MonoBehaviour
 		}
 
 		devilState = (DevilState)nextStateIndex;
-		//devilImg.sprite = devilSprites[devilState];
 
-		// TMP Devil states' colors
+		//devilImg.sprite = devilSprites[devilState];
 		devilImg.color = devilState switch
 		{
-			DevilState.Interested => new Color(0.8f,0.6f,0.9f),
-			DevilState.InLove => new Color(1,0,0.8f),
+			DevilState.Interested => new Color(0.8f, 0.6f, 0.9f),
+			DevilState.InLove => new Color(1, 0, 0.8f),
 			DevilState.Happy => new Color(0.6f, 1, 0.6f),
 			DevilState.Friendly => Color.green,
 			DevilState.Angry => new Color(1, 0.6f, 0.6f),
@@ -145,9 +173,11 @@ public class GameManager : MonoBehaviour
 			_ => Color.white
 
 		};
+
+		backgroundImg.sprite = backgroundSprites[devilState];
 	}
 
-	public int CheckEndGame()
+	private int CheckEndGame()
 	{
 		if (devilState == DevilState.Furious) return 1;
 
