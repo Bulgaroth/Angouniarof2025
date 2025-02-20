@@ -1,0 +1,40 @@
+using AYellowpaper.SerializedCollections;
+using UnityEngine;
+
+public class SoundManager : MonoBehaviour
+{
+	#region Singleton
+
+	private static SoundManager instance;
+	public static SoundManager Instance => instance;
+	#endregion
+
+	[SerializeField, SerializedDictionary("Sound types", "Audio clips")] 
+	private SerializedDictionary<SoundType, AudioClip[]> sounds;
+
+	private readonly AudioSource[] audioSources = new AudioSource[3];
+
+	private void Awake()
+	{
+		instance = this;
+
+		for(int i=1; i<4; ++i)
+			audioSources[i-1] = transform.GetChild(i).GetComponent<AudioSource>();
+	}
+
+	public void PlaySound(SoundType soundType, int index = -1)
+	{
+		var selectedSounds = sounds[soundType];
+		if (index == -1) index = Random.Range(0, selectedSounds.Length);
+		audioSources[(int)soundType].PlayOneShot(selectedSounds[index]);
+	}
+}
+
+public enum SoundType
+{
+	DevilStateAngry,
+	DevilStateHappy,
+	DevilStateInLove,
+	Talking,
+	Answered
+}

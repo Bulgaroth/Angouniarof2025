@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using AYellowpaper.SerializedCollections;
 using System;
+using System.Collections.Generic;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -40,23 +42,22 @@ public class GameManager : MonoBehaviour
 
 	private DialogueData currentDialogue;
 	private AnswerData currentAnswer;
+	private List<AnswerData> shuffledAnswers;
 
 	private bool devilReacted = true;
 	private bool end;
 	private int endingCode = -1;
 	#endregion
 
-	private void Awake()
-	{
-		instance = this;
-		Restart();
-	}
+	private void Awake() => instance = this;
+
+	private void Start() => Restart();
 
 	public void AnswerSelected(int answerIndex)
 	{
 		foreach (AnswerUI ans in answerUIs) ans.gameObject.SetActive(false);
 
-		currentAnswer = currentDialogue.answers[answerIndex];
+		currentAnswer = shuffledAnswers[answerIndex];
 		UpdateDevilState(currentAnswer.devilStateModifier);
 
 		++nbRounds;
@@ -122,11 +123,21 @@ public class GameManager : MonoBehaviour
 
 	private void ShowAnswers()
 	{
+		// Shuffle answers.
+		shuffledAnswers = new(currentDialogue.answers);
+		int n = shuffledAnswers.Count;
+		while (n > 1)
+		{
+			n--;
+			int k = Random.Range(0, shuffledAnswers.Count);
+			(shuffledAnswers[n], shuffledAnswers[k]) = (shuffledAnswers[k], shuffledAnswers[n]);
+		}
+
 		for (int i = 0; i < currentDialogue.answers.Length; ++i)
 		{
 			AnswerUI ans = answerUIs[i];
 			ans.gameObject.SetActive(true);
-			ans.SetLocalisedText(currentDialogue.answers[i].text);
+			ans.SetLocalisedText(shuffledAnswers[i].text);
 		}
 	}
 
@@ -174,6 +185,13 @@ public class GameManager : MonoBehaviour
 
 		};
 
+		SoundManager.Instance.PlaySound(modifier switch
+		{
+			-1 => SoundType.DevilStateAngry,
+			10 => SoundType.DevilStateInLove,
+			_ => SoundType.DevilStateHappy
+		});
+
 		backgroundImg.sprite = backgroundSprites[devilState];
 	}
 
@@ -181,7 +199,11 @@ public class GameManager : MonoBehaviour
 	{
 		if (devilState == DevilState.Furious) return 1;
 
-		if(nbRounds == MAX_ROUNDS)
+		//WIP
+		if (devilState == DevilState.InLove) return 3;
+		if (devilState == DevilState.Friendly) return 2;
+
+		if (nbRounds == MAX_ROUNDS)
 		{
 			if (devilState == DevilState.InLove) return 3;
 			if (devilState == DevilState.Friendly) return 2;

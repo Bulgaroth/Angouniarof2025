@@ -85,6 +85,8 @@ public class DialogueTextManager : MonoBehaviour
 			string fr = currentStringFR + tmpCloseTag;
 			dialogueTextArea.text = $"{fr}\n<i>{currentStringEN}</i>";
 		}
+
+		//SoundManager.Instance.PlaySound(SoundType.Talking);
 	}
 
 	public void WriteNewChar(bool fr)

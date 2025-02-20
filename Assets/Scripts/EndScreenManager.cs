@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class EndScreenManager : MonoBehaviour
 {
-	[SerializeField] private Color[] backgroundColors;
+	[SerializeField] private Sprite[] backgroundSprites;
 	[SerializeField] private LocalisedText[] endTexts;
 
 	private Image background;
@@ -18,7 +18,12 @@ public class EndScreenManager : MonoBehaviour
 
 	public void ShowEndScreen(int endingCode)
 	{
-		background.color = backgroundColors[endingCode];
+		RectTransform bgTransform = background.transform as RectTransform;
+		Vector2 size = bgTransform.sizeDelta;
+		size.y = endingCode == 0 ? 900 : 525;
+		bgTransform.sizeDelta = size;
+
+		background.sprite = backgroundSprites[endingCode];
 		title.text = endTexts[endingCode].ToString();
 	}
 }
