@@ -4,6 +4,7 @@ using AYellowpaper.SerializedCollections;
 using System;
 using System.Collections.Generic;
 using Random = UnityEngine.Random;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -42,14 +43,17 @@ public class GameManager : MonoBehaviour
 	private List<AnswerData> shuffledAnswers;
 
 	private bool devilReacted = true;
-	private bool lastResponse;
 	private bool end;
 	private int endingCode = -1;
+	private int lastModifier = 0;
 	#endregion
+
+	#region API d'Unity
 
 	private void Awake() => instance = this;
 
 	private void Start() => Restart();
+	#endregion
 
 	public void AnswerSelected(int answerIndex)
 	{
@@ -57,19 +61,18 @@ public class GameManager : MonoBehaviour
 
 		currentAnswer = shuffledAnswers[answerIndex];
 		UpdateDevilState(currentAnswer.devilStateModifier);
+		SoundManager.Instance.PlaySound(SoundType.Answered);
 
 		endingCode = CheckEndGame();
 		if (endingCode != 0)
 		{
 			end = true;
-			dialogueTextManager.StartTalking(endingCode - 1);
+			StartCoroutine(DelayedTalking(endingCode - 1));
 			return;
 		}
 
-		dialogueTextManager.StartTalking(currentAnswer.devilReactionText);
 		devilReacted = false;
-
-		SoundManager.Instance.PlaySound(SoundType.Answered);
+		StartCoroutine(DelayedTalking(currentAnswer.devilReactionText));
 	}
 
 	public void OnFinishedTalking()
@@ -81,15 +84,7 @@ public class GameManager : MonoBehaviour
 			return;
 		}
 
-		/*if (lastResponse)
-		{
-			dialogueTextManager.StartTalking(endingCode - 1);
-			end = true;
-			lastResponse = false;
-			return;
-		}*/
-
-		if (!devilReacted) 
+		if (!devilReacted)
 		{
 			NextDialogue();
 			devilReacted = true;
@@ -99,29 +94,16 @@ public class GameManager : MonoBehaviour
 
 	public void Restart()
 	{
-		//SoundManager.Instance.PlaySound(SoundType.Start);
-
 		end = false;
 		endScreenManager.gameObject.SetActive(false);
 
 		devilState = DevilState.Neutral;
-		//devilImg.sprite = devilSprites[devilState];
-		devilImg.color = devilState switch
-		{
-			DevilState.Interested => new Color(0.8f, 0.6f, 0.9f),
-			DevilState.InLove => new Color(1, 0, 0.8f),
-			DevilState.Happy => new Color(0.6f, 1, 0.6f),
-			DevilState.Friendly => Color.green,
-			DevilState.Angry => new Color(1, 0.6f, 0.6f),
-			DevilState.Furious => Color.red,
-			_ => Color.white
-
-		};
-
-		backgroundImg.sprite = backgroundSprites[devilState];
+		UpdateVisuals();
 
 		currentDialogue = startingDialogue;
 		NextDialogue(true);
+
+		//SoundManager.Instance.PlaySound(SoundType.Start);
 	}
 
 	private void NextDialogue(bool first = false)
@@ -154,6 +136,7 @@ public class GameManager : MonoBehaviour
 	{
 		int currentStateIndex = (int)devilState;
 		int nextStateIndex = currentStateIndex + modifier;
+		lastModifier = modifier;
 
 		// Limits of the axis.
 		if (nextStateIndex < -2) nextStateIndex = -2;
@@ -182,9 +165,13 @@ public class GameManager : MonoBehaviour
 		}
 
 		devilState = (DevilState)nextStateIndex;
+		
+	}
 
-		/*if (devilSprites[devilState] != null) devilImg.sprite = devilSprites[devilState];
-		else*/ devilImg.color = devilState switch
+	private void UpdateVisuals()
+	{
+		devilImg.sprite = devilSprites[devilState];
+		/* devilImg.color = devilState switch
 		{
 				DevilState.Interested => new Color(0.8f, 0.6f, 0.9f),
 				DevilState.InLove => new Color(1, 0, 0.8f),
@@ -193,9 +180,9 @@ public class GameManager : MonoBehaviour
 				DevilState.Angry => new Color(1, 0.6f, 0.6f),
 				DevilState.Furious => Color.red,
 				_ => Color.white
-		};
+		};*/
 
-		SoundManager.Instance.PlaySound(modifier switch
+		SoundManager.Instance.PlaySound(lastModifier switch
 		{
 			-1 => SoundType.DevilStateAngry,
 			10 => SoundType.DevilStateInLove,
@@ -221,6 +208,20 @@ public class GameManager : MonoBehaviour
 		}
 
 		return 0;
+	}
+
+	private IEnumerator DelayedTalking(LocalisedText text, bool keepPrevText = false)
+	{
+		yield return new WaitForSeconds(0.5f);
+		dialogueTextManager.StartTalking(text, keepPrevText);
+		UpdateVisuals();
+	}
+
+	private IEnumerator DelayedTalking(int endingCode)
+	{
+		yield return new WaitForSeconds(0.5f);
+		dialogueTextManager.StartTalking(endingCode);
+		UpdateVisuals();
 	}
 }
 

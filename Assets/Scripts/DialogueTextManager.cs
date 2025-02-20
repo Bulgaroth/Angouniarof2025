@@ -63,7 +63,7 @@ public class DialogueTextManager : MonoBehaviour
 		talking = true;
 	}
 
-	public void StartTalking(int endingCode) => StartTalking(endingTexts[endingCode], true);
+	public void StartTalking(int endingCode) => StartTalking(endingTexts[endingCode]);
 
 	public void UpdateText()
 	{

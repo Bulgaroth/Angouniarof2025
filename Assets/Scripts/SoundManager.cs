@@ -26,7 +26,15 @@ public class SoundManager : MonoBehaviour
 	{
 		var selectedSounds = sounds[soundType];
 		if (index == -1) index = Random.Range(0, selectedSounds.Length);
-		audioSources[(int)soundType].PlayOneShot(selectedSounds[index]); 
+
+		int aSIndex = soundType switch
+		{
+			SoundType.DevilStateAngry or SoundType.DevilStateInLove or SoundType.DevilStateHappy => 0,
+			SoundType.Talking => 1,
+			_=> 2
+		};
+
+		audioSources[aSIndex].PlayOneShot(selectedSounds[index]);
 	}
 }
 
