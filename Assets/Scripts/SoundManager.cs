@@ -18,23 +18,23 @@ public class SoundManager : MonoBehaviour
 	{
 		instance = this;
 
-		for(int i=1; i<4; ++i)
-			audioSources[i-1] = transform.GetChild(i).GetComponent<AudioSource>();
+		for(int i=0; i<3; ++i)
+			audioSources[i] = transform.GetChild(i).GetComponent<AudioSource>();
 	}
 
 	public void PlaySound(SoundType soundType, int index = -1)
 	{
 		var selectedSounds = sounds[soundType];
 		if (index == -1) index = Random.Range(0, selectedSounds.Length);
-		audioSources[(int)soundType].PlayOneShot(selectedSounds[index]);
+		audioSources[(int)soundType].PlayOneShot(selectedSounds[index]); 
 	}
 }
 
 public enum SoundType
 {
-	DevilStateAngry,
-	DevilStateHappy,
-	DevilStateInLove,
+	DevilStateAngry, DevilStateHappy, DevilStateInLove,
 	Talking,
-	Answered
+	Answered,
+	WinEnd, LoseEnd, LoveEnd,
+	Start
 }

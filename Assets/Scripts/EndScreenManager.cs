@@ -25,5 +25,7 @@ public class EndScreenManager : MonoBehaviour
 
 		background.sprite = backgroundSprites[endingCode];
 		title.text = endTexts[endingCode].ToString();
+
+		SoundManager.Instance.PlaySound((SoundType)(endingCode + 5));
 	}
 }

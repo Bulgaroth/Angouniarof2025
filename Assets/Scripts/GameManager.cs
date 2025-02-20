@@ -15,8 +15,6 @@ public class GameManager : MonoBehaviour
 
 	#region Attributs
 
-	private const int MAX_ROUNDS = 9;
-
 	#region Références
 
 	#region Références d'assets
@@ -38,13 +36,13 @@ public class GameManager : MonoBehaviour
 	#endregion
 
 	private DevilState devilState;
-	private int nbRounds;
 
 	private DialogueData currentDialogue;
 	private AnswerData currentAnswer;
 	private List<AnswerData> shuffledAnswers;
 
 	private bool devilReacted = true;
+	private bool lastResponse;
 	private bool end;
 	private int endingCode = -1;
 	#endregion
@@ -60,7 +58,6 @@ public class GameManager : MonoBehaviour
 		currentAnswer = shuffledAnswers[answerIndex];
 		UpdateDevilState(currentAnswer.devilStateModifier);
 
-		++nbRounds;
 		endingCode = CheckEndGame();
 		if (endingCode != 0)
 		{
@@ -71,20 +68,30 @@ public class GameManager : MonoBehaviour
 
 		dialogueTextManager.StartTalking(currentAnswer.devilReactionText);
 		devilReacted = false;
+
+		SoundManager.Instance.PlaySound(SoundType.Answered);
 	}
 
 	public void OnFinishedTalking()
 	{
-		if(end)
+		if (end)
 		{
 			endScreenManager.gameObject.SetActive(true);
-			endScreenManager.ShowEndScreen(endingCode-1);
+			endScreenManager.ShowEndScreen(endingCode - 1);
 			return;
 		}
 
+		/*if (lastResponse)
+		{
+			dialogueTextManager.StartTalking(endingCode - 1);
+			end = true;
+			lastResponse = false;
+			return;
+		}*/
+
 		if (!devilReacted) 
 		{
-			NextDialogue(); 
+			NextDialogue();
 			devilReacted = true;
 		}
 		else ShowAnswers();
@@ -92,6 +99,8 @@ public class GameManager : MonoBehaviour
 
 	public void Restart()
 	{
+		//SoundManager.Instance.PlaySound(SoundType.Start);
+
 		end = false;
 		endScreenManager.gameObject.SetActive(false);
 
@@ -148,7 +157,7 @@ public class GameManager : MonoBehaviour
 
 		// Limits of the axis.
 		if (nextStateIndex < -2) nextStateIndex = -2;
-		if (nextStateIndex > 20) nextStateIndex = 20;
+		if (nextStateIndex >= 30) nextStateIndex = 20;
 
 		print(nextStateIndex);
 
@@ -168,21 +177,22 @@ public class GameManager : MonoBehaviour
 			if (nextStateIndex == 11) nextStateIndex -= currentStateIndex;
 
 			if (nextStateIndex >= 3 && nextStateIndex < 10) nextStateIndex = 2;
+
+			print($"Redefinition : {nextStateIndex}");
 		}
 
 		devilState = (DevilState)nextStateIndex;
 
-		//devilImg.sprite = devilSprites[devilState];
-		devilImg.color = devilState switch
+		/*if (devilSprites[devilState] != null) devilImg.sprite = devilSprites[devilState];
+		else*/ devilImg.color = devilState switch
 		{
-			DevilState.Interested => new Color(0.8f, 0.6f, 0.9f),
-			DevilState.InLove => new Color(1, 0, 0.8f),
-			DevilState.Happy => new Color(0.6f, 1, 0.6f),
-			DevilState.Friendly => Color.green,
-			DevilState.Angry => new Color(1, 0.6f, 0.6f),
-			DevilState.Furious => Color.red,
-			_ => Color.white
-
+				DevilState.Interested => new Color(0.8f, 0.6f, 0.9f),
+				DevilState.InLove => new Color(1, 0, 0.8f),
+				DevilState.Happy => new Color(0.6f, 1, 0.6f),
+				DevilState.Friendly => Color.green,
+				DevilState.Angry => new Color(1, 0.6f, 0.6f),
+				DevilState.Furious => Color.red,
+				_ => Color.white
 		};
 
 		SoundManager.Instance.PlaySound(modifier switch
@@ -200,10 +210,10 @@ public class GameManager : MonoBehaviour
 		if (devilState == DevilState.Furious) return 1;
 
 		//WIP
-		if (devilState == DevilState.InLove) return 3;
-		if (devilState == DevilState.Friendly) return 2;
+		//if (devilState == DevilState.InLove) return 3;
+		//if (devilState == DevilState.Friendly) return 2;
 
-		if (nbRounds == MAX_ROUNDS)
+		if(currentAnswer.nextDialogue == null)
 		{
 			if (devilState == DevilState.InLove) return 3;
 			if (devilState == DevilState.Friendly) return 2;

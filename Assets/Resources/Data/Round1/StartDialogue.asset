@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StartDialogue
   m_EditorClassIdentifier: 
   text:
-    textFR: "Alors tu est le prochain humain qui tente de me divertir, hein ? Est-ce
+    textFR: "Alors tu es le prochain humain qui tente de me divertir, hein ? Est-ce
       que tu te rends compte qu\u2019il n\u2019y a rien \xE0 faire en Enfer ces jours-ci
       ?"
     textEN: So you are the next human trying to  enterain me, huh ? Do you know how

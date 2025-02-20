@@ -63,7 +63,7 @@ public class DialogueTextManager : MonoBehaviour
 		talking = true;
 	}
 
-	public void StartTalking(int endingCode) => StartTalking(endingTexts[endingCode]);
+	public void StartTalking(int endingCode) => StartTalking(endingTexts[endingCode], true);
 
 	public void UpdateText()
 	{
@@ -83,10 +83,10 @@ public class DialogueTextManager : MonoBehaviour
 		else
 		{
 			string fr = currentStringFR + tmpCloseTag;
-			dialogueTextArea.text = $"{fr}\n<i>{currentStringEN}</i>";
+			dialogueTextArea.text = $"{fr}<size=50%>\n\n</size><i><size=80%>{currentStringEN}</size></i>";
 		}
 
-		//SoundManager.Instance.PlaySound(SoundType.Talking);
+		SoundManager.Instance.PlaySound(SoundType.Talking);
 	}
 
 	public void WriteNewChar(bool fr)

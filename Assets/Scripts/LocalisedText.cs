@@ -15,5 +15,6 @@ public struct LocalisedText
 		return res;
 	}
 
-	public override readonly string ToString() => $"{textFR}\n<i>{textEN}</i>";
+	public override readonly string ToString()
+		=> $"{textFR}<size=50%>\n\n</size><i><size=80%>{textEN}</size></i>";
 }

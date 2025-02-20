@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: 2_Love
   m_EditorClassIdentifier: 
   text:
-    textFR: "Vous chantez une petite chanson et vous livrez \xE0 une petite danse."
-    textEN: You sing a little song and perform a little dance.
+    textFR: "<b>Vous chantez une petite chanson et vous livrez \xE0 une petite danse.</b>"
+    textEN: <b>You sing a little song and perform a little dance.</b>
   devilReactionText:
-    textFR: "Oh OUAH, ehm <b>*tousse*</b>. Je ne savais pas que les humains pouvaient
+    textFR: "Oh OUAH, ehm <b>tousse</b>. Je ne savais pas que les humains pouvaient
       faire \xE7a..."
-    textEN: Oh WOW, ehm <b>*cough*</b> I didnt know humans could do this...
+    textEN: Oh WOW, ehm <b>cough</b> I didnt know humans could do this...
   nextDialogue: {fileID: 11400000, guid: 6410c9b6babdd6245876aafaca2ad4f7, type: 2}
   devilStateModifier: 10

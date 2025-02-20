@@ -16,9 +16,7 @@ MonoBehaviour:
     textFR: Et tu n'as encore rien vu...
     textEN: You don't know the half of it...
   devilReactionText:
-    textFR: 'Oooohhhh, j''aime ce que tu sous-entends.
-
-'
+    textFR: Oooohhhh, j'aime ce que tu sous-entends.
     textEN: Oooohhhh, I like what you are implying.
   nextDialogue: {fileID: 11400000, guid: 1306d9991dba6724fb89b8072272020e, type: 2}
   devilStateModifier: 10
