@@ -16,7 +16,7 @@ MonoBehaviour:
     textFR: "Alors tu es le prochain humain qui tente de me divertir, hein ? Est-ce
       que tu te rends compte qu\u2019il n\u2019y a rien \xE0 faire en Enfer ces jours-ci
       ?"
-    textEN: So you are the next human trying to  enterain me, huh ? Do you know how
+    textEN: So you are the next human trying to entertain me, huh ? Do you know how
       little there is to do in Hell these days ?
   answers:
   - {fileID: 11400000, guid: e6c6a87b4ffa65e4eb3fa5e937220211, type: 2}

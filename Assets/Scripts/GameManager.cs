@@ -53,6 +53,8 @@ public class GameManager : MonoBehaviour
 
 	public void AnswerSelected(int answerIndex)
 	{
+		print("Salut");
+			
 		if (splashScreen.activeInHierarchy)
 		{
 			Restart();
@@ -89,6 +91,7 @@ public class GameManager : MonoBehaviour
 		{
 			endScreenManager.gameObject.SetActive(true);
 			endScreenManager.ShowEndScreen(endingCode - 1);
+			SoundManager.Instance.ToggleMusic(false);
 			return;
 		}
 
@@ -160,8 +163,6 @@ public class GameManager : MonoBehaviour
 
 		if (!Enum.IsDefined(typeof(DevilState), nextStateIndex))
 		{
-			print("Undefined");
-
 			// Going up the angry axis via love.
 			if (currentStateIndex < 0 && modifier == 10) nextStateIndex = 0;
 
@@ -174,8 +175,6 @@ public class GameManager : MonoBehaviour
 			if (nextStateIndex == 11) nextStateIndex -= currentStateIndex;
 
 			if (nextStateIndex >= 3 && nextStateIndex < 10) nextStateIndex = 2;
-
-			print($"Redefinition : {nextStateIndex}");
 		}
 
 		devilState = (DevilState)nextStateIndex;

@@ -16,7 +16,7 @@ MonoBehaviour:
     textFR: Bon. Je pense que je devrais juste exploser ce tas de merde. Je veux
       dire la Terre. HAHA
     textEN: Anyways. I think I should just explode this pile of shit. I mean the
-      earth HAHA
+      Earth HAHA
   answers:
   - {fileID: 11400000, guid: 1c722cc0bf9a0aa43b075725be12b326, type: 2}
   - {fileID: 11400000, guid: c00c24cd49e411543ad631d95f2fd518, type: 2}

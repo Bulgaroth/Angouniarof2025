@@ -15,6 +15,7 @@ public class SoundManager : MonoBehaviour
 	private SerializedDictionary<SoundType, AudioClip[]> sounds;
 
 	private readonly AudioSource[] audioSources = new AudioSource[4];
+	private bool launchMusic;
 
 	private void Awake()
 	{
@@ -22,6 +23,15 @@ public class SoundManager : MonoBehaviour
 
 		for(int i=0; i<transform.childCount; ++i)
 			audioSources[i] = transform.GetChild(i).GetComponent<AudioSource>();
+	}
+
+	private void Update()
+	{
+		if (launchMusic && !audioSources[2].isPlaying)
+		{
+			ChangeMusic(true);
+			launchMusic = false;
+		}
 	}
 
 	public void PlaySound(SoundType soundType, int index = -1)
@@ -36,15 +46,25 @@ public class SoundManager : MonoBehaviour
 			_=> 2
 		};
 
+		if (soundType.ToString().Contains("End")) launchMusic = true;
+
 		audioSources[aSIndex].PlayOneShot(selectedSounds[index]);
 	}
 
 	public void ChangeMusic(bool intro)
 	{
 		AudioSource aS = audioSources[^1];
+		aS.Stop();
 		aS.clip = musics[intro ? 0 : 1];
 		aS.time = 0;
 		aS.Play();
+	}
+
+	public void ToggleMusic(bool on)
+	{
+		AudioSource aS = audioSources[^1];
+		if (on) aS.Play();
+		aS.Stop();
 	}
 }
 
