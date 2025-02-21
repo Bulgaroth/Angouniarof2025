@@ -1,5 +1,5 @@
-using AYellowpaper.SerializedCollections;
 using UnityEngine;
+using AYellowpaper.SerializedCollections;
 
 public class SoundManager : MonoBehaviour
 {
@@ -9,16 +9,18 @@ public class SoundManager : MonoBehaviour
 	public static SoundManager Instance => instance;
 	#endregion
 
+	[SerializeField] private AudioClip[] musics;
+
 	[SerializeField, SerializedDictionary("Sound types", "Audio clips")] 
 	private SerializedDictionary<SoundType, AudioClip[]> sounds;
 
-	private readonly AudioSource[] audioSources = new AudioSource[3];
+	private readonly AudioSource[] audioSources = new AudioSource[4];
 
 	private void Awake()
 	{
 		instance = this;
 
-		for(int i=0; i<3; ++i)
+		for(int i=0; i<transform.childCount; ++i)
 			audioSources[i] = transform.GetChild(i).GetComponent<AudioSource>();
 	}
 
@@ -36,6 +38,14 @@ public class SoundManager : MonoBehaviour
 
 		audioSources[aSIndex].PlayOneShot(selectedSounds[index]);
 	}
+
+	public void ChangeMusic(bool intro)
+	{
+		AudioSource aS = audioSources[^1];
+		aS.clip = musics[intro ? 0 : 1];
+		aS.time = 0;
+		aS.Play();
+	}
 }
 
 public enum SoundType
@@ -44,5 +54,4 @@ public enum SoundType
 	Talking,
 	Answered,
 	WinEnd, LoseEnd, LoveEnd,
-	Start
 }

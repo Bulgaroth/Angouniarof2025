@@ -1,10 +1,10 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using AYellowpaper.SerializedCollections;
-using System;
-using System.Collections.Generic;
 using Random = UnityEngine.Random;
-using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private Image backgroundImg;
 	[SerializeField] private Image devilImg;
 	[SerializeField] private DialogueData startingDialogue;
+	[SerializeField] private GameObject splashScreen;
 	#endregion
 
 	private DevilState devilState;
@@ -48,15 +49,22 @@ public class GameManager : MonoBehaviour
 	private int lastModifier = 0;
 	#endregion
 
-	#region API d'Unity
-
 	private void Awake() => instance = this;
-
-	private void Start() => Restart();
-	#endregion
 
 	public void AnswerSelected(int answerIndex)
 	{
+		if (splashScreen.activeInHierarchy)
+		{
+			Restart();
+			return;
+		}
+
+		if (end)
+		{
+			ShowSplashScreen();
+			return;
+		}
+
 		foreach (AnswerUI ans in answerUIs) ans.gameObject.SetActive(false);
 
 		currentAnswer = shuffledAnswers[answerIndex];
@@ -96,14 +104,20 @@ public class GameManager : MonoBehaviour
 	{
 		end = false;
 		endScreenManager.gameObject.SetActive(false);
+		splashScreen.SetActive(false);
+		SoundManager.Instance.ChangeMusic(false);
 
 		devilState = DevilState.Neutral;
 		UpdateVisuals();
 
 		currentDialogue = startingDialogue;
 		NextDialogue(true);
+	}
 
-		//SoundManager.Instance.PlaySound(SoundType.Start);
+	public void ShowSplashScreen()
+	{
+		splashScreen.SetActive(true);
+		SoundManager.Instance.ChangeMusic(true);
 	}
 
 	private void NextDialogue(bool first = false)
