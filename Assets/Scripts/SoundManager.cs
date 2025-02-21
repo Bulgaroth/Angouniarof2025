@@ -53,6 +53,7 @@ public class SoundManager : MonoBehaviour
 
 	public void ChangeMusic(bool intro)
 	{
+		if (intro) audioSources[2].Stop();
 		AudioSource aS = audioSources[^1];
 		aS.Stop();
 		aS.clip = musics[intro ? 0 : 1];
